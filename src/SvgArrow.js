@@ -196,6 +196,7 @@ const SvgArrow = ({
   offset,
   endShape,
 }: Props) => {
+  console.log('endShape', endShape)
   const actualArrowLength = endShape.circle
     ? endShape.circle.radius * 2
     : endShape.arrow.arrowLength * 2;

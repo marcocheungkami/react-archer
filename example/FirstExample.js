@@ -20,8 +20,8 @@ const FirstExample = () => {
             relations={[
               {
                 targetId: 'element2',
-                targetAnchor: 'top',
-                sourceAnchor: 'bottom',
+                targetAnchor: 'middle',
+                sourceAnchor: 'middle',
                 style: { strokeDasharray: '5,5' },
               },
             ]}
@@ -36,8 +36,8 @@ const FirstExample = () => {
             relations={[
               {
                 targetId: 'element3',
-                targetAnchor: 'left',
-                sourceAnchor: 'right',
+                targetAnchor: 'middle',
+                sourceAnchor: 'middle',
                 style: { strokeColor: 'blue', strokeWidth: 1 },
                 label: <div style={{ marginTop: '-20px' }}>Arrow 2</div>,
               },
@@ -55,8 +55,8 @@ const FirstExample = () => {
             relations={[
               {
                 targetId: 'root',
-                targetAnchor: 'right',
-                sourceAnchor: 'left',
+                targetAnchor: 'middle',
+                sourceAnchor: 'middle',
                 label: 'Arrow 3',
               },
             ]}
