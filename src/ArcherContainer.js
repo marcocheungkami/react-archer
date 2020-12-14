@@ -70,6 +70,7 @@ function computeCoordinatesFromAnchorPosition(
   anchorPosition: AnchorPositionType,
   rect: ClientRect,
 ): Point {
+  console.log('computeCoordinatesFromAnchorPosition')
   switch (anchorPosition) {
     case 'top':
       return rectToPoint(rect).add(new Point(rect.width / 2, 0));
@@ -251,6 +252,7 @@ export class ArcherContainer extends React.Component<Props, State> {
   };
 
   _createShapeObj = (style: LineType) => {
+    debugger
     const chosenEndShape = getEndShapeFromStyle(style);
     console.log('chosenEndShape' ,chosenEndShape)
     const shapeObjMap = {
