@@ -90,6 +90,7 @@ function computeCoordinatesFromAnchorPosition(
 const possibleShapes: Array<ValidShapeTypes> = ['arrow', 'circle'];
 
 const getEndShapeFromStyle = (shapeObj: LineType) => {
+  console.log('getEndShapeFromStyle', shapeObj)
   if (!shapeObj.endShape) {
     return possibleShapes[0];
   }
@@ -254,7 +255,7 @@ export class ArcherContainer extends React.Component<Props, State> {
   _createShapeObj = (style: LineType) => {
     debugger
     const chosenEndShape = getEndShapeFromStyle(style);
-    console.log('chosenEndShape' ,chosenEndShape)
+    console.log('chosenEndShape' ,chosenEndShape, style)
     const shapeObjMap = {
       arrow: () => ({
         arrow: {
@@ -274,10 +275,12 @@ export class ArcherContainer extends React.Component<Props, State> {
   };
 
   _computeArrows = (): React$Element<typeof SvgArrow>[] => {
+    console.log('compute arrow!!!!!')
     const parentCoordinates = this._getParentCoordinates();
 
     return this._getSourceToTargets().map(
       ({ source, target, label, style = {} }: SourceToTargetType) => {
+        console.log('this._getSourceToTargets().ma', style)
         const endShape = this._createShapeObj(style);
 
         const strokeColor = style.strokeColor || this.props.strokeColor;
