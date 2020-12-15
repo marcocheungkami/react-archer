@@ -113,10 +113,12 @@ export class ArcherElementNoContext extends React.Component<InnerProps> {
   }
 }
 
-const ArcherElementWithContext = (props: OuterProps) => (
+const ArcherElementWithContext = (props: OuterProps) => {
+  console.log('props ArcherElementWithContext', props)
+  return (
   <ArcherContainerContextConsumer>
     {context => <ArcherElementNoContext {...props} context={context} />}
-  </ArcherContainerContextConsumer>
-);
+  </ArcherContainerContextConsumer>)
+};
 
 export default ArcherElementWithContext;
