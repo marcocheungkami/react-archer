@@ -146,6 +146,7 @@ function computePathString({
 |}): string {
   const curveMarker = noCurves ? '' : 'C';
 
+  
   // if (offset && offset > 0) {
   //   const angle = Math.atan2(yAnchor1 - yStart, xAnchor1 - xStart);
 
@@ -179,27 +180,27 @@ function computePathString({
   console.log('ending point x, y', xEnd, yEnd)
   const convertArrowDirectionParams = computeArrowDirection(endingAnchorOrientation)
 
+  function calAngleDegrees (x,y) {
+    return Math.atan2(y ,x) * 180 / Math.PI
+  }
+
   function computeCasesForOffet(offset) {
     const offsetRatio = 10
     console.log('offsetRatio', offsetRatio)
     const offset_ = offset
     const x = xEnd - xStart
     const y = yEnd - yStart
+    console.log('x,y', x,y)
+    const theta = calAngleDegrees(Math.abs(x) ,Math.abs(y))
+    const offsetX = Math.abs(offset_ * Math.sin(90 - theta))
+    const offsetY = Math.abs(offset_ * Math.cos(90 - theta))
+
+    console.log('offsetX', offsetX)
+    console.log('offsetY', offsetY)
+
     let offsetXEnd = 0
     let offsetYEnd = 0
-    let offsetX = Math.abs(x) / offsetRatio > offset_ ? offset_ : Math.abs(x) /offsetRatio
-    let offsetY = Math.abs(y) / offsetRatio > offset_ ? offset_ : Math.abs(y) /offsetRatio
-    if (offsetX + offsetY < offset) {
-      if (offsetX < offsetY) {
-        offsetY = offset
-      } else if (offsetX > offsetY) {
-        offsetX = offset
-      } else {
-        offsetY += offset / 2
-        offsetX += offset / 2 
-      }
-    }
-
+    
     if (x > 0) {
       offsetXEnd = xEnd - offsetX
     } else if (x < 0) {
@@ -208,7 +209,6 @@ function computePathString({
       offsetXEnd = xEnd
     }
 
-    offsetYEnd = yEnd
     if (y > 0) {
       offsetYEnd = yEnd - offsetY
     } else if (y < 0) {
