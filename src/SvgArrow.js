@@ -189,8 +189,15 @@ function computePathString({
     // const offsetY = 
     let offsetXEnd = 0
     let offsetYEnd = 0
-    const offsetX = Math.abs(x) / offsetRatio > offset_ ? offset_ : Math.abs(x) /offsetRatio
-    const offsetY = Math.abs(y) / offsetRatio > offset_ ? offset_ : Math.abs(y) /offsetRatio
+    let offsetX = Math.abs(x) / offsetRatio > offset_ ? offset_ : Math.abs(x) /offsetRatio
+    let offsetY = Math.abs(y) / offsetRatio > offset_ ? offset_ : Math.abs(y) /offsetRatio
+    if (offsetX + offsetY < (offset * offsetRatio)) {
+      if (offsetX < offsetY) {
+        offsetX = offset
+      } else if (offsetX > offsetY) {
+        offsetY = offset
+      }
+    }
     // const offsetX = Math.abs(x) /offsetRatio
     // const offsetY = Math.abs(y) /offsetRatio
     if (x > 0) {
