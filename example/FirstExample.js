@@ -8,12 +8,12 @@ const rowStyle = {
   display: 'flex',
   justifyContent: 'space-between',
 };
-const boxStyle = { padding: '10px', border: '1px solid black' };
+const boxStyle = { padding: '10px', border: '1px solid black', width: 50, height: 50 };
 
 const FirstExample = () => {
   return (
     <div style={{ height: '500px', margin: '50px' }}>
-      <ArcherContainer strokeColor="red">
+      <ArcherContainer strokeColor="red" offset={50}>
         <div style={rootStyle}>
           <ArcherElement
             id="root"

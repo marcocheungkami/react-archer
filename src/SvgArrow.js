@@ -146,18 +146,18 @@ function computePathString({
 |}): string {
   const curveMarker = noCurves ? '' : 'C';
 
-  if (offset && offset > 0) {
-    const angle = Math.atan2(yAnchor1 - yStart, xAnchor1 - xStart);
+  // if (offset && offset > 0) {
+  //   const angle = Math.atan2(yAnchor1 - yStart, xAnchor1 - xStart);
 
-    const xOffset = offset * Math.cos(angle);
-    const yOffset = offset * Math.sin(angle);
+  //   const xOffset = offset * Math.cos(angle);
+  //   const yOffset = offset * Math.sin(angle);
 
-    xStart = xStart + xOffset;
-    xEnd = xEnd - xOffset;
+  //   xStart = xStart + xOffset;
+  //   xEnd = xEnd - xOffset;
 
-    yStart = yStart + yOffset;
-    yEnd = yEnd - yOffset;
-  }
+  //   yStart = yStart + yOffset;
+  //   yEnd = yEnd - yOffset;
+  // }
 
   function computeArrowDirection(endingAnchorOrientation) {
     switch (endingAnchorOrientation) {
@@ -173,12 +173,45 @@ function computePathString({
         return '';
     }
   }
-  
+
+  console.log('endingAnchorOrientation' ,endingAnchorOrientation)
+  console.log('starting point x, y', xStart, yStart)
+  console.log('ending point x, y', xEnd, yEnd)
   const convertArrowDirectionParams = computeArrowDirection(endingAnchorOrientation)
+
+  function computeCasesForOffet(offset) {
+    const offset_ = offset
+    const x = xEnd - xStart
+    const y = yEnd - yStart
+    // const offsetX = 
+    // const offsetY = 
+    let offsetXEnd = 0
+    let offsetYEnd = 0
+    if (x > 0) {
+      offsetXEnd = xEnd - offset_
+    } else if (x < 0) {
+      offsetXEnd = xEnd + offset_
+    } else {
+      offsetXEnd = xEnd
+    }
+
+    offsetYEnd = yEnd
+    // if (y > 0) {
+    //   offsetYEnd = yEnd - offset
+    // } else if (y < 0) {
+    //   offsetYEnd = yEnd + offset
+    // } else {
+    //   offsetYEnd = yEnd
+    // }
+    // const offsetXEnd = x >= 0 ? xEnd - offset : xEnd + offset
+    // const offsetYEnd = y >= 0 ? yEnd - offset : yEnd + offset
+    return {offsetXEnd : offsetXEnd, offsetYEnd: offsetYEnd}
+  }
+  const {offsetXEnd,offsetYEnd } = computeCasesForOffet(offset)
   return (
     `M${xStart},${yStart} ` +
-    (shortestPath ? convertArrowDirectionParams : `${curveMarker}${xAnchor1},${yAnchor1} ${xAnchor2},${yAnchor2} `) +
-    `${xEnd},${yEnd}`
+    // (shortestPath ? convertArrowDirectionParams : `${curveMarker}${xAnchor1},${yAnchor1} ${xAnchor2},${yAnchor2} `) +
+    `${offsetXEnd},${offsetYEnd}`
   );
 }
 const SvgArrow = ({

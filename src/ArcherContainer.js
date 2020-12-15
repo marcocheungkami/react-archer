@@ -253,7 +253,6 @@ export class ArcherContainer extends React.Component<Props, State> {
   };
 
   _createShapeObj = (style: LineType) => {
-    debugger
     const chosenEndShape = getEndShapeFromStyle(style);
     console.log('chosenEndShape' ,chosenEndShape, style)
     const shapeObjMap = {

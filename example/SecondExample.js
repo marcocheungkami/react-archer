@@ -8,7 +8,7 @@ const rowStyle = {
   display: 'flex',
   justifyContent: 'space-between',
 };
-const boxStyle = { padding: '10px', border: '1px solid black' };
+const boxStyle = { padding: '10px', border: '1px solid black', height: 50, width: 50 };
 
 class SecondExample extends React.Component {
   state = { nbElements: 3, labels: 'hello' };
