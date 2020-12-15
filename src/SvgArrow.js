@@ -180,7 +180,7 @@ function computePathString({
   const convertArrowDirectionParams = computeArrowDirection(endingAnchorOrientation)
 
   function computeCasesForOffet(offset) {
-    const offsetRatio = 9
+    const offsetRatio = 7
     console.log('offsetRatio', offsetRatio)
     const offset_ = offset
     const x = xEnd - xStart
@@ -194,10 +194,12 @@ function computePathString({
         offsetY = offset
       } else if (offsetX > offsetY) {
         offsetX = offset
+      } else {
+        offsetY += offset / 2
+        offsetX += offset / 2 
       }
     }
-    // const offsetX = Math.abs(x) /offsetRatio
-    // const offsetY = Math.abs(y) /offsetRatio
+
     if (x > 0) {
       offsetXEnd = xEnd - offsetX
     } else if (x < 0) {
@@ -214,8 +216,7 @@ function computePathString({
     } else {
       offsetYEnd = yEnd
     }
-    // const offsetXEnd = x >= 0 ? xEnd - offset : xEnd + offset
-    // const offsetYEnd = y >= 0 ? yEnd - offset : yEnd + offset
+
     return {offsetXEnd : offsetXEnd, offsetYEnd: offsetYEnd}
   }
   const {offsetXEnd,offsetYEnd } = computeCasesForOffet(offset)
