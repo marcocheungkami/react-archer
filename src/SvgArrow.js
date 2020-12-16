@@ -160,26 +160,6 @@ function computePathString({
   //   yEnd = yEnd - yOffset;
   // }
 
-  function computeArrowDirection(endingAnchorOrientation) {
-    switch (endingAnchorOrientation) {
-      case 'left':
-        return `${xEnd - 1},${yEnd} `;
-      case 'right':
-        return `${xEnd + 1},${yEnd} `;
-      case 'top':
-        return `${xEnd},${yEnd - 1} `;
-      case 'bottom':
-        return `${xEnd},${yEnd + 1} `;
-      default:
-        return '';
-    }
-  }
-
-  console.log('endingAnchorOrientation' ,endingAnchorOrientation)
-  console.log('starting point x, y', xStart, yStart)
-  console.log('ending point x, y', xEnd, yEnd)
-  const convertArrowDirectionParams = computeArrowDirection(endingAnchorOrientation)
-
   function calAngleDegrees (x,y) {
     return Math.atan2(y ,x) * 180 / Math.PI
   }
@@ -194,14 +174,11 @@ function computePathString({
     const offset_ = offset
     const x = xEnd - xStart
     const y = yEnd - yStart
-    console.log('x,y', x,y)
+
     const theta = calAngleDegrees(Math.abs(x) ,Math.abs(y))
-    console.log('theta', theta)
+
     const offsetX = Math.abs(offset_ * Math.sin(degrees_to_radians(90 - theta)))
     const offsetY = Math.abs(offset_ * Math.cos(degrees_to_radians(90 - theta)))
-
-    console.log('offsetX', offsetX)
-    console.log('offsetY', offsetY)
 
     let offsetXEnd = 0
     let offsetYEnd = 0
@@ -246,7 +223,6 @@ const SvgArrow = ({
   offset,
   endShape,
 }: Props) => {
-  console.log('endShape', endShape)
   const actualArrowLength = endShape.circle
     ? endShape.circle.radius * 2
     : endShape.arrow.arrowLength * 2;
