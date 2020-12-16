@@ -184,6 +184,12 @@ function computePathString({
     return Math.atan2(y ,x) * 180 / Math.PI
   }
 
+  function degrees_to_radians(degrees)
+  {
+    const pi = Math.PI;
+    return degrees * (pi/180);
+  }
+
   function computeCasesForOffet(offset) {
     const offset_ = offset
     const x = xEnd - xStart
@@ -191,8 +197,8 @@ function computePathString({
     console.log('x,y', x,y)
     const theta = calAngleDegrees(Math.abs(x) ,Math.abs(y))
     console.log('theta', theta)
-    const offsetX = Math.abs(offset_ * Math.sin(90 - theta))
-    const offsetY = Math.abs(offset_ * Math.cos(90 - theta))
+    const offsetX = Math.abs(offset_ * Math.sin(degrees_to_radians(90 - theta)))
+    const offsetY = Math.abs(offset_ * Math.cos(degrees_to_radians(90 - theta)))
 
     console.log('offsetX', offsetX)
     console.log('offsetY', offsetY)
