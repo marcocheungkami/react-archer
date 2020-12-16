@@ -185,7 +185,6 @@ function computePathString({
   }
 
   function computeCasesForOffet(offset) {
-    console.log('offsetRatio', offsetRatio)
     const offset_ = offset
     const x = xEnd - xStart
     const y = yEnd - yStart
