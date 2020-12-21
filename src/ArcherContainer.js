@@ -21,7 +21,6 @@ type Props = {
   strokeWidth: number,
   strokeDasharray?: string,
   noCurves?: boolean,
-  shortestPath?: boolean,
   children: React$Node | FunctionChild,
   style?: Object,
   svgContainerStyle?: Object,
@@ -285,8 +284,6 @@ export class ArcherContainer extends React.Component<Props, State> {
 
         const noCurves = style.noCurves || this.props.noCurves;
 
-        const shortestPath = style.shortestPath || this.props.shortestPath;
-
         const offset = this.props.offset || 0;
 
         const startingAnchorOrientation = source.anchor;
@@ -316,7 +313,6 @@ export class ArcherContainer extends React.Component<Props, State> {
             arrowLabel={label}
             arrowMarkerId={this._getMarkerId(source, target)}
             noCurves={!!noCurves}
-            shortestPath={!!shortestPath}
             offset={offset}
             endShape={endShape}
           />

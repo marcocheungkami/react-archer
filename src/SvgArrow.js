@@ -14,7 +14,6 @@ type Props = {
   arrowLabel?: ?React$Node,
   arrowMarkerId: string,
   noCurves: boolean,
-  shortestPath: boolean,
   offset?: number,
   endShape: Object,
 };
@@ -127,7 +126,6 @@ function computePathString({
   xEnd,
   yEnd,
   noCurves,
-  shortestPath,
   offset,
   endingAnchorOrientation,
 }: {|
@@ -140,25 +138,10 @@ function computePathString({
   xEnd: number,
   yEnd: number,
   noCurves: boolean,
-  shortestPath: boolean,
   offset?: number,
   endingAnchorOrientation?: AnchorPositionType,
 |}): string {
   const curveMarker = noCurves ? '' : 'C';
-
-  
-  // if (offset && offset > 0) {
-  //   const angle = Math.atan2(yAnchor1 - yStart, xAnchor1 - xStart);
-
-  //   const xOffset = offset * Math.cos(angle);
-  //   const yOffset = offset * Math.sin(angle);
-
-  //   xStart = xStart + xOffset;
-  //   xEnd = xEnd - xOffset;
-
-  //   yStart = yStart + yOffset;
-  //   yEnd = yEnd - yOffset;
-  // }
 
   function calAngleDegrees (x,y) {
     return Math.atan2(y ,x) * 180 / Math.PI
@@ -204,7 +187,7 @@ function computePathString({
   const {offsetXEnd,offsetYEnd } = computeCasesForOffet(offset)
   return (
     `M${xStart},${yStart} ` +
-    // (shortestPath ? convertArrowDirectionParams : `${curveMarker}${xAnchor1},${yAnchor1} ${xAnchor2},${yAnchor2} `) +
+    `${curveMarker}${xAnchor1},${yAnchor1} ${xAnchor2},${yAnchor2} `+
     `${offsetXEnd},${offsetYEnd}`
   );
 }
@@ -219,7 +202,6 @@ const SvgArrow = ({
   arrowLabel,
   arrowMarkerId,
   noCurves,
-  shortestPath,
   offset,
   endShape,
 }: Props) => {
@@ -267,7 +249,6 @@ const SvgArrow = ({
     xEnd,
     yEnd,
     noCurves,
-    shortestPath,
     offset,
     endingAnchorOrientation,
   });
