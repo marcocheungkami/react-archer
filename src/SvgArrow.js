@@ -187,7 +187,7 @@ function computePathString({
   const {offsetXEnd,offsetYEnd } = computeCasesForOffet(offset)
   return (
     `M${xStart},${yStart} ` +
-     offset > 0 ? '' :  `${curveMarker}${xAnchor1},${yAnchor1} ${xAnchor2},${yAnchor2} `+
+     (offset > 0 ? '' :  `${curveMarker}${xAnchor1},${yAnchor1} ${xAnchor2},${yAnchor2} `)+
     `${offsetXEnd},${offsetYEnd}`
   );
 }
